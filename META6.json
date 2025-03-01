@@ -12,11 +12,14 @@
   "name": "RedEventStore",
   "perl": "6.d",
   "provides": {
-    "RedEventStore": "lib/RedEventStore.rakumod"
+    "RedEventStore::Storage": "lib/RedEventStore/Storage.rakumod",
+    "RedEventStore::Storage::Event": "lib/RedEventStore/Storage/Event.rakumod",
+    "RedEventStore::Storage::EventClass": "lib/RedEventStore/Storage/EventClass.rakumod",
+    "RedEventStore::Storage::EventField": "lib/RedEventStore/Storage/EventField.rakumod"
   },
   "resources": [
   ],
-  "source-url": "",
+  "source-url": "https://github.com/FCO/RedEventStore.git",
   "tags": [
   ],
   "test-depends": [

@@ -11,8 +11,18 @@ has             %.pars;
 has Red::Driver $.db = database $!driver, |%!pars;
 
 method TWEAK(|) {
+	with %*ENV<RED_DEBUG> {
+		note "Setting RED-DEBUG to { .so }";
+		$GLOBAL::RED-DEBUG = .so;
+	}
+
+	with %*ENV<RED_DEBUG_RESULT> {
+		note "Setting RED-DEBUG-RESULT to { .so }";
+		$GLOBAL::RED-DEBUG-RESULT = .so;
+	}
+
 	my $*RED-DB = $!db;
-	schema(
+	try schema(
 		RedEventStore::Storage::Event,
 		RedEventStore::Storage::EventField,
 		RedEventStore::Storage::EventClass,
@@ -21,7 +31,6 @@ method TWEAK(|) {
 
 method add-event(:@types, :%data) {
 	my $type = @types.head;
-	#say "add-event: ", $event;
 	my $*RED-DB = $!db;
 
 	red-do :transaction, {
